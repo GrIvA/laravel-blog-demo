@@ -8,6 +8,8 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="/admin/fonts/all.min.css">
   <link rel="stylesheet" href="/admin/css/adminlte.min.css">
+  <link rel="stylesheet" href="/admin/css/select2.min.css">
+  <link rel="stylesheet" href="/admin/css/select2-bootstrap4.min.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -194,12 +196,12 @@
               </li>
 
               <!-- Categories -->
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
                   <i class="nav-icon fas fa-archive"></i>
                   <p>Categories<i class="right fas fa-angle-left"></i></p>
                 </a>
-                <ul class="nav has-treeview pl-4">
+                <ul class="nav nav-treeview pl-4">
                     <li class="nav-item">
                         <a href="{{ route('categories.index') }}" class="nav-link">
                           <i class="nav-icon far fa-circle"></i>
@@ -218,12 +220,12 @@
               </li>
 
               <!-- Tags -->
-              <li class="nav-item">
+              <li class="nav-item has-treeview">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-archive"></i>
+                  <i class="nav-icon fas fa-tags"></i>
                   <p>Tags<i class="right fas fa-angle-left"></i></p>
                 </a>
-                <ul class="nav has-treeview pl-4">
+                <ul class="nav nav-treeview pl-4">
                     <li class="nav-item">
                         <a href="{{ route('tags.index') }}" class="nav-link">
                           <i class="nav-icon far fa-circle"></i>
@@ -240,6 +242,32 @@
                     </li>
                 </ul>
               </li>
+
+
+              <!-- Posts -->
+              <li class="nav-item has-treeview">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon fas fa-edit"></i>
+                  <p>Posts<i class="right fas fa-angle-left"></i></p>
+                </a>
+                <ul class="nav nav-treeview pl-4">
+                    <li class="nav-item">
+                        <a href="{{ route('posts.index') }}" class="nav-link">
+                          <i class="nav-icon far fa-circle"></i>
+                          <p>Post list</p>
+
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('posts.create') }}" class="nav-link">
+                          <i class="nav-icon far fa-circle"></i>
+                          <p>New post</p>
+
+                        </a>
+                    </li>
+                </ul>
+              </li>
+
 
 
 
@@ -389,10 +417,13 @@
 <script src="/admin/js/jquery.min.js"></script>
 <script src="/admin/js/bootstrap.bundle.min.js"></script>
 <script src="/admin/js/adminlte.min.js"></script>
+<script src="/admin/js/select2.full.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="/admin/js/demo.js"></script> -->
 
 <script>
+$('.select2').select2();
+
 $('.nav-sidebar a').each(function() {
     let location = window.location.protocol+'//'+window.location.host+window.location.pathname;
     let link = this.href;
