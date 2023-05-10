@@ -11,6 +11,7 @@ class Post extends Model
     use HasFactory;
     use Sluggable;
 
+    const UPLOAD_IMAGE_PATH = 'uploads/';
 
     protected $fillable = [
         'header',
@@ -30,6 +31,17 @@ class Post extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * get post image path
+     *
+     * @return String
+     */
+    public function getImage($default_path = 'no-image-80.png')
+    {
+        $img = $this->thumbnails ?? $default_path;
+        return asset(self::UPLOAD_IMAGE_PATH . $img);
     }
 
     public function sluggable(): array

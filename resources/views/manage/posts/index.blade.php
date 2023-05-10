@@ -43,7 +43,7 @@
                                 <td>{{ $post->id }}</td>
                                 <td>{{ $post->header }}</td>
                                 <td>{{ $post->category->title }}</td>
-                                <td>{{ $post->tags }}</td>
+                                <td>{{ $post->tags->pluck('title')->join(', ') }}</td>
                                 <td>{{ $post->status }}</td>
                                 <td>{{ $post->created_at }}</td>
                                 <td>

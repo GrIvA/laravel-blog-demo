@@ -3,6 +3,7 @@
 use App\Http\Controllers\Manage\CategoryController;
 use App\Http\Controllers\Manage\TagController;
 use App\Http\Controllers\Manage\PostController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Manage\MainController;
 
@@ -25,6 +26,10 @@ Route::group(['prefix' => 'manage'], function() {
 });
 
 
+Route::get('/register', [UserController::class, 'create'])->name('register.create');
+Route::post('/register', [UserController::class, 'store'])->name('register.store');
+
+
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
