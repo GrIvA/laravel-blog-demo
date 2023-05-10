@@ -12,9 +12,19 @@ class Post extends Model
     use Sluggable;
 
 
+    protected $fillable = [
+        'header',
+        'epilog',
+        'description',
+        'content',
+        'thumbnails',
+        'category_id',
+        'status',
+    ];
+
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->withTimestamps();
     }
 
     public function category()

@@ -32,60 +32,60 @@
                             <input type="text" name="header" class="form-control @error('header') is-invalid @enderror" id="header" placeholder="Header" />
                         </div>
 
-<!-- Description -->
-<div class="form-group">
-    <label for="description">Description</label>
-    <textarea id="description" name="description" class="form-control" rows="5" placeholder="Enter description"></textarea>
-</div>
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" class="form-control @error('description') is-invalid @enderror" rows="3" placeholder="Enter description"></textarea>
+                        </div>
 
-<!-- Epilog -->
-<div class="form-group">
-    <label for="epilog">Epilog</label>
-    <textarea id="epilog" name="epilog" class="form-control" rows="5" placeholder="Put post epilog"></textarea>
-</div>
+                        <!-- Epilog -->
+                        <div class="form-group">
+                            <label for="epilog">Epilog</label>
+                            <textarea id="epilog" name="epilog" class="form-control @error('epilog') is-invalid @enderror" rows="3" placeholder="Put post epilog"></textarea>
+                        </div>
 
-<!-- Content -->
-<div class="form-group">
-    <label for="content">Content</label>
-    <textarea id="content" name="content" class="form-control" rows="15" placeholder="Past post content"></textarea>
-</div>
+                        <!-- Content -->
+                        <div class="form-group">
+                            <label for="content">Content</label>
+                            <textarea id="content" name="content" class="form-control @error('content') is-invalid @enderror" rows="10" placeholder="Past post content"></textarea>
+                        </div>
 
-<!-- Category -->
-<div class="form-group">
-    <label for="category_id">Category</label>
-    <select id="category_id" name="category_id" class="form-control">
-        <option>Select category</option>
-        @foreach($categories as $id => $title)
-            <option value="{{ $id }}">{{ $title }}</option>
-        @endforeach
-    </select>
-</div>
+                        <!-- Category -->
+                        <div class="form-group">
+                            <label for="category_id">Category</label>
+                            <select id="category_id" name="category_id" class="form-control @error('category_id') is-invalid @enderror">
+                                <option>Select category</option>
+                                @foreach($categories as $id => $title)
+                                    <option value="{{ $id }}">{{ $title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-<!-- Tags -->
-<div class="form-group">
-    <label for="tags">Tags</label>
-    <select id="tags" name="tags[]" multiple="multiple" class="select2" data-placeholder="Select a Tag" style="width: 100%;">
-        @foreach($tags as $id => $t)
-            <option value="{{ $id }}">{{ $t }}</option>
-        @endforeach
-    </select>
-</div>
+                        <!-- Tags -->
+                        <div class="form-group">
+                            <label for="tags">Tags</label>
+                            <select id="tags" name="tags[]" multiple="multiple" class="select2" data-placeholder="Select a Tag" style="width: 100%;">
+                                @foreach($tags as $id => $t)
+                                    <option value="{{ $id }}">{{ $t }}</option>
+                                @endforeach
+                            </select>
+                        </div>
 
-<!-- Thumbnails -->
-<div class="form-group">
-    <label for="thumbnails">Thumbnails</label>
-    <div class="input-group">
-        <div class="custom-file">
-            <input type="file" id="thumbnails" name="thumbnails" class="custom-file-input" />
-            <label class="custom-file-label" for="thumbnails">Choose file</label>
-        </div>
-        <!--
-        <div class="input-group-append">
-            <span class="input-group-text" id="">Upload</span>
-        </div>
-        -->
-    </div>
-</div>
+                        <!-- Thumbnails -->
+                        <div class="form-group">
+                            <label for="thumbnails">Thumbnails</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" id="thumbnails" name="thumbnails" class="custom-file-input" />
+                                    <label class="custom-file-label" for="thumbnails">Choose file</label>
+                                </div>
+                                <!--
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="">Upload</span>
+                                </div>
+                                -->
+                            </div>
+                        </div>
 
 
 

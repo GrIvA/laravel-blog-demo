@@ -25,10 +25,27 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->all());
         $request->validate([
-            'header' => 'required',
+            'header'      => 'required',
+            'epilog'      => 'required',
+            'description' => 'required',
+            'content'     => 'required',
+            'category_id' => 'required|integer',
+            'thumbnails'  => 'nullable|image',
         ]);
+
+        $data = $request->all();
+
+        // Define available the post at the site
+        $data['status'] = 1;
+
+        if ($request->hasFile('thumbnails')) {
+            $folder = date('Y-m-d');
+            $data['thumbnails'] = $request->file('thumbnails')->store('images/'.$folder);
+        }
+
+        $post = Post::create($data);
+        $post->tags()->sync($request->tags);
 
         return redirect(route('posts.index'))->with('success', 'Post was added');
     }

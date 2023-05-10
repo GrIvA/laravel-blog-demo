@@ -14,11 +14,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
             $table->string('header')->unique();
+            $table->string('slug')->unique();
             $table->string('description')->default('');
             $table->string('epilog')->default('');
             $table->string('thumbnails')->nullable();
             $table->text('content')->nullable();
-            $table->unsignedInteger('Category_id');
+            $table->unsignedInteger('category_id');
             $table->unsignedTinyInteger('status')->default(0);
             $table->integer('views')->unsigned()->default(0);
             $table->timestamps();
