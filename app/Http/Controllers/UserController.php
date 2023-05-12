@@ -35,4 +35,43 @@ class UserController extends Controller
         return redirect()->route('home');
     }
 
+    /**
+     * LoginForm route
+     */
+    public function loginForm()
+    {
+        return view('user.login');
+    }
+
+    /**
+     * Login post handler
+     */
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email'    => 'required|email',
+            'password' => 'required',
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            session()->flash('success', 'You are logged');
+
+            if (Auth::user()->is_admin) {
+                return redirect()->route('manage.main.index');
+            } else {
+                return redirect()->route('home');
+            }
+        }
+        return redirect()->back()->with('error', 'Incorrect login or password');
+    }
+
+    /**
+     * logout route
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('login.create');
+    }
+
 }

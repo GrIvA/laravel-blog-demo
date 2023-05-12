@@ -45,14 +45,22 @@ class CategoryController extends Controller
         $category = Category::find($id);
         //$category->slug = null; // for automatic slug update
         $category->update($request->all());
-        return redirect()->route('categories.index')->with('success', 'Category was updated');
+        return redirect()
+                    ->route('categories.index')
+                    ->with('success', 'Category was updated');
     }
 
     public function destroy(string $id)
     {
-        //$category = Category::find($id);
-        //$category->delete();
-        Category::destroy($id);
-        return redirect()->route('categories.index')->with('success', 'Category was deleted');
+        $category = Category::find($id);
+        if (!$category->posts->counnt()) {
+            $category->delete();
+            return redirect()
+                ->route('categories.index')
+                ->with('success', 'Category was deleted');
+        }
+        return redirect()
+                    ->route('categories.index')
+                    ->with('error', 'Category exists post(s)');
     }
 }

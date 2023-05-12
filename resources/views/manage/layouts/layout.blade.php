@@ -168,7 +168,7 @@
           <img src="/admin/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ Auth::user()->name }} - Admin</a>
         </div>
       </div>
 
@@ -417,6 +417,7 @@
 <script src="/admin/js/bootstrap.bundle.min.js"></script>
 <script src="/admin/js/adminlte.min.js"></script>
 <script src="/admin/js/select2.full.min.js"></script>
+<script src="/admin/js/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="/admin/js/demo.js"></script> -->
 
@@ -430,6 +431,10 @@ $('.nav-sidebar a').each(function() {
         $(this).addClass('active');
         $(this).closest('has-treeview').addClass('menu-open');
     }
+});
+
+$(document).ready(function () {
+    bsCustomFileInput.init();
 });
 </script>
 </body>
