@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{$common.title_of_page}</title>
+        <title>@yield('title')</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
@@ -19,8 +19,8 @@
         <script src="{{  asset('front/js/tools/ic.min.js') }}"></script>
         @yield('js')
 
-        <link rel="stylesheet" href="{{ 'front/css/fontawesome-all.min.css' }}">
-        <link rel="stylesheet" href="{{ 'front/css/main.css' }}">
+        <link rel="stylesheet" href="{{ asset('front/css/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('front/css/main.css') }}">
         @yield('css')
     </head>
     <body>
@@ -31,11 +31,9 @@
                 <div class="inner">
                     @include('site.blog.header')
                     <!-- Banner -->
-                    <section id="banner">
-                        @yield('banner_content')
-                    </section>
+                    @yield('banner_content')
 
-                    @yield('banner')
+                    @yield('content')
                 </div>
             </div>
             @include('site.blog.side')

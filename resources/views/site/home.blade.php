@@ -1,27 +1,34 @@
 @extends('site.blog.layout.main')
 
+@section('title', 'Blog::Home')
+
+
 @section('banner_content')
-    {set $tag_selected = $user_info.tags ?: []}
+<section id="banner">
     <div class="content">
         <header>
-            <h1>{$banner.header !? ''}</h1>
-            <p>{$banner.epilog !? ''}</p>
+            <h1>{{ $banner->header }}</h1>
+            <p>{{ $banner->epilog }}</p>
         </header>
-        <p>{$banner.anons|markdown !? ''}</p>
+        <!-- <p>{$banner.anons|markdown !? ''}</p> -->
+        <p>{{ $banner->annons }}</p>
         <ul class="actions">
-            <li><a href="/{7|getPageURL}/{$banner.id}" class="button big">Learn More</a></li>
+            <li><a href="{{ route('posts.article', $banner->slug) }}" class="button big">Learn More</a></li>
         </ul>
         <div class="tags">
-            {foreach $banner.tags as $tag}
-                <span class="{($tag in list $tag_selected) ? 'selected' : ''}" data-tag="{$tags[$tag]['tag_id']}">{$tags[$tag]['name']}</span>
-            {/foreach}
+            @foreach($banner->tags as $tag)
+                <span data-tag="{{ $tag->id }}">{{ $tag->title }}</span>
+            @endforeach
         </div>
+        <small>{{ $banner->getPostDate() }}</small>
+        <small><i class="fa fa-eye">{{ $banner->views }}</i></small>
     </div>
-    {if $banner.image?}
+    @if($banner->thumbnails)
         <span class="image object">
-            <img src="{$banner.image}" alt="Banner logo" />
+            <img src="{{ $banner->getImage() }}" alt="Banner logo" />
         </span>
-    {/if}
+    @endif
+</section>
 @endsection
 
 
@@ -32,20 +39,26 @@
         <h2>Latest articles</h2>
     </header>
     <div class="features">
-        {foreach $last_articles as $las}
+        @foreach($posts as $post)
             <article>
                 <span class="icon fa-newspaper"></span>
                 <div class="content">
-                    <h3>{$las.header}</h3>
-                    <p>{$las.epilog} <a href="/{7|getPageURL}/{$las.id}">More...</a></p>
+                    <h3>{{ $post->header }}</h3>
+                    <p>{{ $post->epilog }} <a href="{{ route('posts.article', $post->slug) }}">More...</a></p>
                     <div class="tags">
-                        {foreach $las.tags as $tag}
-                            <span class="{($tag in list $tag_selected) ? 'selected' : ''}" data-tag="{$tags[$tag]['tag_id']}">{$tags[$tag]['name']}</span>
-                        {/foreach}
+                        @foreach($post->tags as $tag)
+                            <span data-tag="{{ $tag->id }}">{{ $tag->title }}</span>
+                            <!--<span class="{($tag in list $tag_selected) ? 'selected' : ''}" data-tag="{$tags[$tag]['tag_id']}">{$tags[$tag]['name']}</span>-->
+                        @endforeach
                     </div>
                 </div>
             </article>
-        {/foreach}
+        @endforeach
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <nav aria-label="Page navigation">{{ $posts->links() }}</nav>
+        </div>
     </div>
 </section>
 @endsection

@@ -17,7 +17,7 @@
             <ul>
 
                 @auth
-                    <h3>Hi, {$user_info.alias}</h3>
+                    <h3>Hi, {{ Auth::user()->name }}</h3>
                     <li><a href="{{ route('logout') }}">Sign out</a></li>
                     <li><a href="#">My articles</a></li>
                 @endauth
@@ -40,22 +40,21 @@
         <!-- Articles -->
         <section>
             <header class="major"><h2>{'BLG00006'|translate}</h2></header>
-            {set $articles = $articles_info ?: []}
-            {foreach $articles as $article}
+            @foreach($popular_articles as $article)
                 <ul class="actions">
-                    <li><a href="/{7|getPageURL}/{$article.id}" class="">{$article.header}</a></li>
+                    <li><a href="{{ route('posts.article', $article->slug) }}" class="">{{ $article->header }}</a></li>
                 </ul>
-            {/foreach}
+            @endforeach
         </section>
 
         <!-- Section -->
         <section>
             <header class="major"><h2>Tags</h2></header>
             <div class="tags">
-            {set $tag_selected = $user_info.tags ?: []}
-            {foreach $tags as $tag}
-                <span class="box {($tag.tag_id in list $tag_selected) ? 'selected' : ''}" data-tag="{$tag.tag_id}">{$tag.name}</span>
-            {/foreach}
+            @foreach($tag_infos as $id => $tag)
+                <!--<span class="box {($tag.tag_id in list $tag_selected) ? 'selected' : ''}" data-tag="{$tag.tag_id}">{$tag.name}</span>-->
+                <span class="box {($tag.tag_id in list $tag_selected) ? 'selected' : ''}" data-tag="{{$id}}">{{ $tag }}</span>
+            @endforeach
             <span class="box" data-tag="0">All tags</span>
             </div>
         </section>

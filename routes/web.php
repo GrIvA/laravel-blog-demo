@@ -6,6 +6,7 @@ use App\Http\Controllers\Manage\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Manage\MainController;
+use App\Http\Controllers\Site\PostController as SitePostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,5 @@ Route::group(['middleware' => 'guest'], function () {
 Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
 
 
-Route::get('/', function () {
-    return view('site.home');
-})->name('home');
+Route::get('/', [SitePostController::class, 'index'])->name('home');
+Route::get('/article/{slug}', [SitePostController::class, 'show'])->name('posts.article');

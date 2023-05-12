@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Carbon\Carbon;
 
 class Post extends Model
 {
@@ -50,4 +51,11 @@ class Post extends Model
             'slug' => ['source' => 'header']
         ];
     }
+
+    public function getPostDate()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)
+                ->format('d F, Y');
+    }
+
 }

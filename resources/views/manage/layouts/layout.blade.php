@@ -19,7 +19,7 @@
     <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+        <a class="nav-link" data-enable-remember="true" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="../../index3.html" class="nav-link">Home</a>
@@ -382,6 +382,11 @@
                     </div>
                 @endif
 
+                @if (session()->has('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 @if (session()->has('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
