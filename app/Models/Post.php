@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Parsedown;
 
 class Post extends Model
 {
@@ -56,6 +58,25 @@ class Post extends Model
     {
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)
                 ->format('d F, Y');
+    }
+
+    // PROTECT
+
+    /**
+     * Accesor for content fiels
+     * convert MarkDown to HTML
+     *
+     * @return Attribute
+     */
+    protected function content(): Attribute
+    {
+        return Attribute::make(
+            get: function ($v) {
+                $parser = new Parsedown();
+                $parser->setSafeMode(true);
+                return $parser->setMarkupEscaped(false)->text($v);
+            },
+        );
     }
 
 }
