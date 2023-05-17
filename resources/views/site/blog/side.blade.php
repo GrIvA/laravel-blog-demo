@@ -9,6 +9,20 @@
             </form>
         </section>
 
+        <!-- Language -->
+        <section>
+            <div class="col-12">
+                <selecta name="demo-category" id="demo-category">
+                    @foreach($languages as $key => $lang)
+                        <div value="{{ $key }}" @if(Session::get('locale') == $key) selected @endif>
+                            <a href="{{ route('locale', $key) }}">{{ $lang }}</a>
+                        </div>
+                    @endforeach
+                </selecta>
+            </div>
+
+        </section>
+
         <!-- Menu -->
         <nav id="menu">
             <header class="major">
@@ -28,6 +42,7 @@
 
 
                 <li><a href="{{ route('login') }}">Homepage</a></li>
+
                 <li>
                     <span class="opener">Tools</span>
                     <ul>
@@ -39,7 +54,7 @@
 
         <!-- Articles -->
         <section>
-            <header class="major"><h2>{'BLG00006'|translate}</h2></header>
+            <header class="major"><h2>{{ trans('test.BLG00002') }}</h2></header>
             @foreach($popular_articles as $article)
                 <ul class="actions">
                     <li><a href="{{ route('posts.article', $article->slug) }}" class="">{{ $article->header }}</a></li>
