@@ -21,7 +21,7 @@ class PostController extends Controller
         return view('site.home', compact((['posts', 'banner'])));
     }
 
-    public function show($slug)
+    public function show($lang, $slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
 

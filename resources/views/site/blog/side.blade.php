@@ -37,11 +37,11 @@
                 @endauth
 
                 @guest
-                    <li><a href="{{ route('login.create') }}">Sign in</a></li>
+                    <li><a href="{{ route('login.create', ['lang' => $current_language]) }}">Sign in</a></li>
                 @endguest
 
 
-                <li><a href="{{ route('login') }}">Homepage</a></li>
+                <li><a href="{{ route('login', ['lang' => $current_language]) }}">Homepage</a></li>
 
                 <li>
                     <span class="opener">Tools</span>
@@ -57,7 +57,7 @@
             <header class="major"><h2>{{ trans('test.BLG00002') }}</h2></header>
             @foreach($popular_articles as $article)
                 <ul class="actions">
-                    <li><a href="{{ route('posts.article', $article->slug) }}" class="">{{ $article->header }}</a></li>
+                    <li><a href="{{ route('posts.article', ['lang' => $current_language, 'slug' => $article->slug]) }}" class="">{{ $article->header }}</a></li>
                 </ul>
             @endforeach
         </section>

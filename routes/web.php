@@ -27,11 +27,14 @@ Route::group(['prefix' => 'manage', 'middleware' => 'admin'], function() {
     Route::resource('/posts', PostController::class, []);
 });
 
-Route::group(['middleware' => 'guest'], function () {
-    Route::get('/register', [UserController::class, 'create'])->name('register.create');
-    Route::post('/register', [UserController::class, 'store'])->name('register.store');
-    Route::get('/login', [UserController::class, 'loginForm'])->name('login.create');
-    Route::post('/login', [UserController::class, 'login'])->name('login');
+Route::group(['prefix' => '{lang}', 'middleware' => 'lang'], function () {
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('/register', [UserController::class, 'create'])->name('register.create');
+        Route::post('/register', [UserController::class, 'store'])->name('register.store');
+        Route::get('/login', [UserController::class, 'loginForm'])->name('login.create');
+        Route::post('/login', [UserController::class, 'login'])->name('login');
+    });
+    Route::get('/article/{slug}', [SitePostController::class, 'show'])->name('posts.article');
 });
 
 Route::get('/locale/{locale}', [LocaleController::class, 'store'])->name('locale');
@@ -39,5 +42,4 @@ Route::get('/locale/{locale}', [LocaleController::class, 'store'])->name('locale
 Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
 
 
-Route::get('/article/{slug}', [SitePostController::class, 'show'])->name('posts.article');
 Route::get('/', [SitePostController::class, 'index'])->name('home');

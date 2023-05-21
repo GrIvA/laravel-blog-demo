@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\View;
 
 class ComposerServiceProvider extends ServiceProvider
 {
+
     /**
      * Register services.
      */
@@ -26,7 +27,6 @@ class ComposerServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
         // Last article list
         if (Cache::has('pop_posts')) {
             $posts = Cache::get('pop_posts') ;
@@ -44,10 +44,6 @@ class ComposerServiceProvider extends ServiceProvider
         }
 
         // Languages
-        //App::setLocale(Session::get('locale', 'en'));
-        //dump(Session::get('locale'));
-        //dump(App::currentLocale());
-
         if (Cache::has('languages')) {
             $languages = Cache::get('languages') ;
         } else {
@@ -60,7 +56,24 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('popular_articles', $posts);
             $view->with('tag_infos', $tags);
             $view->with('languages', $languages);
+            $view->with('current_language', $this->getCurrentLanguage());
         });
 
+        View::composer('site.home', function ($view) {
+            $view->with('current_language', $this->getCurrentLanguage());
+        });
     }
+
+    // PRIVATE
+
+    /**
+     * return session's current language
+     *
+     * @return string
+     */
+    private function getCurrentLanguage()
+    {
+        return Session::get('current_language') ?? App::config('locale');
+    }
+
 }

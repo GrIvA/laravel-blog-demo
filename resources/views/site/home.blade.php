@@ -13,7 +13,7 @@
         <!-- <p>{$banner.anons|markdown !? ''}</p> -->
         <p>{{ $banner->annons }}</p>
         <ul class="actions">
-            <li><a href="{{ route('posts.article', $banner->slug) }}" class="button big">Learn More</a></li>
+            <li><a href="{{ route('posts.article', ['lang' => $current_language, 'slug' => $banner->slug]) }}" class="button big">Learn More</a></li>
         </ul>
         <div class="tags">
             @foreach($banner->tags as $tag)
@@ -44,7 +44,7 @@
                 <span class="icon fa-newspaper"></span>
                 <div class="content">
                     <h3>{{ $post->header }}</h3>
-                    <p>{{ $post->epilog }} <a href="{{ route('posts.article', $post->slug) }}">More...</a></p>
+                    <p>{{ $post->epilog }} <a href="{{ route('posts.article', ['lang' => $current_language, 'slug' => $post->slug]) }}">More...</a></p>
                     <div class="tags">
                         @foreach($post->tags as $tag)
                             <span data-tag="{{ $tag->id }}">{{ $tag->title }}</span>
