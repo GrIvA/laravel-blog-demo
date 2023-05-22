@@ -22,13 +22,11 @@ class LanguageURI
 
         $lang = !empty($lang) && strlen($lang) == 2 && in_array($lang, $languages)
                 ? $lang
-                : App::config('locale'); //
+                : config('app.locale'); //
 
         $request->session()->put('current_language', $lang);
         $request->session()->save();
         App::getInstance()->setLocale($lang);
-//        d($request->route());
-//        die("=== STOP: $lang ===");
 
         return $next($request);
     }

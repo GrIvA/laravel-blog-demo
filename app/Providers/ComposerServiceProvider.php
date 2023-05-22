@@ -6,7 +6,6 @@ use App\Models\Language;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
@@ -47,7 +46,7 @@ class ComposerServiceProvider extends ServiceProvider
         if (Cache::has('languages')) {
             $languages = Cache::get('languages') ;
         } else {
-            $languages = Language::where('available', 1)->pluck('name', 'abr')->all();
+            $languages = Language::where('available', 1)->pluck('locale', 'abr')->all();
             Cache::put('languages', $languages, 12 * 60 * 60);
         }
 
@@ -73,7 +72,7 @@ class ComposerServiceProvider extends ServiceProvider
      */
     private function getCurrentLanguage()
     {
-        return Session::get('current_language') ?? App::config('locale');
+        return Session::get('current_language') ?? config('app.locale');
     }
 
 }

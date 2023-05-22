@@ -1,26 +1,20 @@
 <!-- Sidebar -->
 <div id="sidebar">
     <div class="inner">
+        <!-- Languages -->
+        @if (request()->routeIs('home'))
+            <div class="tags" style="line-height: 2rem;">
+                @foreach($languages as $key => $lang)
+                    <a href="{{ route('home') }}/{{ $key }}" class="button primary small">{{ $lang }}</a>
+                @endforeach
+            </div>
+        @endif
 
         <!-- Search -->
         <section id="search" class="alt">
             <form method="post" action="#">
                 <input type="text" name="query" id="query" placeholder="Search" />
             </form>
-        </section>
-
-        <!-- Language -->
-        <section>
-            <div class="col-12">
-                <selecta name="demo-category" id="demo-category">
-                    @foreach($languages as $key => $lang)
-                        <div value="{{ $key }}" @if(Session::get('locale') == $key) selected @endif>
-                            <a href="{{ route('locale', $key) }}">{{ $lang }}</a>
-                        </div>
-                    @endforeach
-                </selecta>
-            </div>
-
         </section>
 
         <!-- Menu -->

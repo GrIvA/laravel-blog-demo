@@ -42,4 +42,4 @@ Route::get('/locale/{locale}', [LocaleController::class, 'store'])->name('locale
 Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
 
 
-Route::get('/', [SitePostController::class, 'index'])->name('home');
+Route::get('/{lang?}', [SitePostController::class, 'index'])->name('home')->middleware('lang');
