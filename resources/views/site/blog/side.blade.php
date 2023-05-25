@@ -20,18 +20,19 @@
         <!-- Menu -->
         <nav id="menu">
             <header class="major">
-                <h2>Menu</h2>
+                <h2>{{ trans('test.BLG00001') }}</h2>
             </header>
             <ul>
 
                 @auth
-                    <h3>Hi, {{ Auth::user()->name }}</h3>
-                    <li><a href="{{ route('logout') }}">Sign out</a></li>
-                    <li><a href="#">My articles</a></li>
+                    <h3>{{ trans('test.BLG00003') }} {{ Auth::user()->name }}</h3>
+                    <li><a href="{{ route('logout') }}">{{ trans('test.BLG00007') }}</a></li>
+                    <li><a href="#">{{ trans('test.BLG00009') }}</a></li>
                 @endauth
 
                 @guest
-                    <li><a href="{{ route('login.create', ['lang' => $current_language]) }}">Sign in</a></li>
+                    <li><a href="{{ route('login.create', ['lang' => $current_language]) }}">{{ trans('test.BLG00008') }}</a></li>
+                    <li><a href="{{ route('register.create', ['lang' => $current_language]) }}">{{ trans('test.BLG00020') }}</a></li>
                 @endguest
 
 
@@ -58,7 +59,7 @@
 
         <!-- Section -->
         <section>
-            <header class="major"><h2>Tags</h2></header>
+            <header class="major"><h2>{{ trans('test.BLG00004') }}</h2></header>
             <div class="tags">
             @foreach($tag_infos as $id => $tag)
                 <!--<span class="box {($tag.tag_id in list $tag_selected) ? 'selected' : ''}" data-tag="{$tag.tag_id}">{$tag.name}</span>-->
@@ -71,9 +72,9 @@
         <!-- Section -->
         <section>
             <header class="major">
-                <h2>Contacts</h2>
+                <h2>{{ trans('test.BLG00005') }}</h2>
             </header>
-            <p>You can always contact me in one of these ways</p>
+            <p>{{ trans('test.BLG00006') }}</p>
             <ul class="contact">
                 <li class="icon solid fa-envelope"><a href="mailto:griva99ptc@gmail.com">griva99ptc@gmail.com</a></li>
                 <li class="svg_icon"><div>

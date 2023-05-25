@@ -11,7 +11,7 @@
         <h1>{{ $post->header }}</h1>
         <h4>{{ $post->category->title }}</h4>
         <div class="info box">
-            <div>{{ trans('test.BLG00001') }}: {{ $post->description }}</div>
+            <div>{{ $post->description }}</div>
             <div>{'BLG00005'|translate}: {{ $post->getPostDate() }}</div>
             <br />
 

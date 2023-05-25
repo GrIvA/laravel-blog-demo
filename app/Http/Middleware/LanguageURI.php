@@ -26,7 +26,7 @@ class LanguageURI
 
         $request->session()->put('current_language', $lang);
         $request->session()->save();
-        App::getInstance()->setLocale($lang);
+        App::setLocale($lang);
 
         return $next($request);
     }

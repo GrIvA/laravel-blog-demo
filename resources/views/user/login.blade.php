@@ -13,7 +13,7 @@
 
 	<div class="register-box">
 		<div class="card card-outline card-primary">
-			<div class="card-header text-center"><b>Blog Demo</b></div>
+			<div class="card-header text-center"><b>{{ trans('test.BLG00010') }}</b></div>
 
             <div class="container mt-2">
                 <div class="row">
@@ -45,19 +45,19 @@
             </div>
 
 			<div class="card-body">
-				<p class="login-box-msg">Login page</p>
-				<form action="{{ route('login') }}" method="post">
+				<p class="login-box-msg">{{ trans('test.BLG00011') }}</p>
+				<form action="{{ route('login', ) }}" method="post">
                     @csrf
 
 
 					<div class="input-group mb-3">
-						<input type="email" name="email" class="form-control" placeholder="Email">
+						<input type="email" name="email" class="form-control" placeholder="{{ trans('test.BLG00012') }}">
 						<div class="input-group-append">
 							<div class="input-group-text"> <span class="fas fa-envelope"></span> </div>
 						</div>
 					</div>
 					<div class="input-group mb-3">
-						<input type="password" name="password" class="form-control" placeholder="Password">
+						<input type="password" name="password" class="form-control" placeholder="{{ trans('test.BLG00013') }}">
 						<div class="input-group-append">
 							<div class="input-group-text"> <span class="fas fa-lock"></span> </div>
 						</div>
@@ -66,8 +66,8 @@
 
 
 					<div class="row">
-						<div class="col-4 offset-8">
-							<button type="submit" class="btn btn-primary btn-block">Login</button>
+						<div class="col-5 offset-7">
+							<button type="submit" class="btn btn-primary btn-block">{{ trans('test.BLG00014') }}</button>
 						</div>
 					</div>
 				</form>
