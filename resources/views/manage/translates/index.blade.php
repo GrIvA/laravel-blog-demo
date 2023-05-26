@@ -41,7 +41,7 @@
                                 <td>{{ $it->id }}</td>
                                 <td>{{ $it->group }}</td>
                                 <td>{{ $it->key }}</td>
-                                <td><pre style="max-width:70vw;">{{ json_encode($it->text) }}</pre></td>
+                                <td><pre style="max-width:55vw;">{{ json_encode($it->text) }}</pre></td>
                                 <td>
                                     <a href="{{ route('translates.edit', ['translate' => $it->id]) }}" class="btn btn-info btn-sm float-left mr-1">
                                         <i class="fas fa-pencil-alt"></i>

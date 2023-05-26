@@ -3,6 +3,7 @@
 namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -24,7 +25,24 @@ class Handler extends ExceptionHandler
     public function register(): void
     {
         $this->reportable(function (Throwable $e) {
-            //
+            d($e->getMessage());
+//            return false;
         });
+    }
+
+    // PROTECTED
+
+    /**
+     * Get the default context variables for logging.
+     *
+     * @return array<string, mixed>
+     */
+    protected function context(): array
+    {
+        $req = request();
+        return array_merge(parent::context(), [
+            'ip' => $req->ip(),
+            'clientip' => $req->getClientIp(),
+        ]);
     }
 }
