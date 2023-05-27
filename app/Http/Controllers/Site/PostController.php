@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
-
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -17,7 +17,6 @@ class PostController extends Controller
             ->whereNotIn('id', [$banner->id])
             ->paginate(6);
 
-        //Debugbar::info($banner);
         return view('site.home', compact((['posts', 'banner'])));
     }
 
@@ -25,6 +24,7 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->firstOrFail();
 
+//        Log::channel('site')->emergency('==> All Good');
         $post->views += 1;
         $post->update();
 

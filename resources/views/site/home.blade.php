@@ -36,7 +36,7 @@
 <!-- Section -->
 <section>
     <header class="major">
-        <h2>Latest articles</h2>
+        <h2>{{ trans("test.BLG00002") }}</h2>
     </header>
     <div class="features">
         @foreach($posts as $post)

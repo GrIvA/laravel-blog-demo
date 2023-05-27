@@ -52,6 +52,20 @@ return [
     */
 
     'channels' => [
+        'site' => [
+            'name'    => 'site',
+            'driver'  => 'monolog',
+            'handler' => Database\Logger\DatabaseLogHandler::class,
+            'via'     => Database\Logger\SiteLogger::class,
+
+            'alternative' => 'daily', // Use an alternate channel
+                                // when it is not possible to write to the database
+            'connection' => null, // Use default connection
+            'table'      => 'logs',
+            'async'      => false, // If true, will be sent to the queue
+            'queue'      => 'default', // Define a queue for asynchronous logging
+            'level'      => 'error',
+        ],
         'stack' => [
             'driver' => 'stack',
             'channels' => ['single'],

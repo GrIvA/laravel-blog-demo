@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\HttpFoundation\Response;
 
 class LanguageURI
@@ -27,6 +28,8 @@ class LanguageURI
         $request->session()->put('current_language', $lang);
         $request->session()->save();
         App::setLocale($lang);
+
+        Log::shareContext(['language' => $lang]);
 
         return $next($request);
     }
