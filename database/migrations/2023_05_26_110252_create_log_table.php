@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('logs', function (Blueprint $table) {
-            $table->unsignedInteger('id')->primary()->autoIncrement();
+            $table->unsignedInteger('id')->autoIncrement();
             $table->enum('level', ['emergency', 'alert', 'critical', 'error', 'warning', 'notice', 'info', 'debug']);
 
 

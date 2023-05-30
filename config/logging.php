@@ -64,7 +64,7 @@ return [
             'table'      => 'logs',
             'async'      => false, // If true, will be sent to the queue
             'queue'      => 'default', // Define a queue for asynchronous logging
-            'level'      => 'error',
+            'level' => env('LOG_LEVEL', 'debug'),
         ],
         'stack' => [
             'driver' => 'stack',

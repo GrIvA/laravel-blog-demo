@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Spatie\TranslationLoader\TranslationServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
+        //App\Providers\SiteServiceProvider::class,
     ])->toArray(),
 
     /*

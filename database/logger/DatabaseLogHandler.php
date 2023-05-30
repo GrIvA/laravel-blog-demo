@@ -19,6 +19,7 @@ class DatabaseLogHandler extends AbstractProcessingHandler
             'remote_addr' => $_SERVER['REMOTE_ADDR'] ?? null,
             'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
             'created_at' => Carbon::now()->format('Y-m-d H:i:s.u'),
+            'updated_at' => Carbon::now()->format('Y-m-d H:i:s.u'),
         ];
 
         if (config('logging.channels.site.async')) {

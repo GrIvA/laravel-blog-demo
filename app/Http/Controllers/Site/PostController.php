@@ -24,7 +24,6 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->firstOrFail();
 
-//        Log::channel('site')->emergency('==> All Good');
         $post->views += 1;
         $post->update();
 
