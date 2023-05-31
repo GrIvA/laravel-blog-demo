@@ -32,3 +32,13 @@
     </div>
 </article>
 @endsection
+
+@section('css')
+<style>
+.article-body img {
+  display: block;
+  max-width: 60vw;
+}
+style>
+@endsection
+

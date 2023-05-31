@@ -27,7 +27,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->getPassword()),
+            'password' => password_hash($request->getPassword(), PASSWORD_BCRYPT),
         ]);
 
         session()->flash('success', 'User registered');
@@ -63,7 +63,7 @@ class UserController extends Controller
                 return redirect()->route('home');
             }
         }
-        return redirect()->back()->with('error', 'Incorrect login or password');
+        return redirect()->back()->withErrors(['password' => 'Incorrect login or password']);
     }
 
     /**

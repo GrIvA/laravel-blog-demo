@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Manage;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class TagController extends Controller
 {
@@ -29,6 +30,7 @@ class TagController extends Controller
         ]);
 
         Tag::create($request->all());
+        Cache::forget('all_tags');
         return redirect(route('tags.index'))->with('success', 'Tag was added');
     }
 
@@ -46,6 +48,7 @@ class TagController extends Controller
 
         $tag = Tag::find($id);
         $tag->update($request->all());
+        Cache::forget('all_tags');
         return redirect()->route('tags.index')->with('success', 'Tag was updated');
     }
 

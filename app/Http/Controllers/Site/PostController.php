@@ -12,10 +12,15 @@ class PostController extends Controller
     public function index()
     {
         $banner = Post::orderBy('id', 'desc')->first();
-        $posts = Post::with('tags')
-            ->orderBy('id', 'desc')
-            ->whereNotIn('id', [$banner->id])
-            ->paginate(6);
+        if ($banner) {
+            $posts = Post::with('tags')
+                ->orderBy('id', 'desc')
+                ->whereNotIn('id', [$banner->id])
+                ->paginate(6);
+        } else {
+            $banner = [];
+            $posts = [];
+        }
 
         return view('site.home', compact((['posts', 'banner'])));
     }

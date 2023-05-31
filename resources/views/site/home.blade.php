@@ -5,28 +5,31 @@
 
 @section('banner_content')
 <section id="banner">
-    <div class="content">
-        <header>
-            <h1>{{ $banner->header }}</h1>
-            <p>{{ $banner->epilog }}</p>
-        </header>
-        <!-- <p>{$banner.anons|markdown !? ''}</p> -->
-        <p>{{ $banner->annons }}</p>
-        <ul class="actions">
-            <li><a href="{{ route('posts.article', ['lang' => $current_language, 'slug' => $banner->slug]) }}" class="button big">Learn More</a></li>
-        </ul>
-        <div class="tags">
-            @foreach($banner->tags as $tag)
-                <span data-tag="{{ $tag->id }}">{{ $tag->title }}</span>
-            @endforeach
+    @if (empty($banner))
+        <p>No articles available...</p>
+    @else
+        <div class="content">
+            <header>
+                <h1>{{ $banner->header }}</h1>
+                <p>{{ $banner->epilog }}</p>
+            </header>
+            <p>{{ $banner->annons }}</p>
+            <ul class="actions">
+                <li><a href="{{ route('posts.article', ['lang' => $current_language, 'slug' => $banner->slug]) }}" class="button big">Learn More</a></li>
+            </ul>
+            <div class="tags">
+                @foreach($banner->tags as $tag)
+                    <span data-tag="{{ $tag->id }}">{{ $tag->title }}</span>
+                @endforeach
+            </div>
+            <small>{{ $banner->getPostDate() }}</small>
+            <small><i class="fa fa-eye">{{ $banner->views }}</i></small>
         </div>
-        <small>{{ $banner->getPostDate() }}</small>
-        <small><i class="fa fa-eye">{{ $banner->views }}</i></small>
-    </div>
-    @if($banner->thumbnails)
-        <span class="image object">
-            <img src="{{ $banner->getImage() }}" alt="Banner logo" />
-        </span>
+        @if($banner->thumbnails)
+            <span class="image object">
+                <img src="{{ $banner->getImage() }}" alt="Banner logo" />
+            </span>
+        @endif
     @endif
 </section>
 @endsection
@@ -57,7 +60,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <nav aria-label="Page navigation">{{ $posts->links() }}</nav>
+            <nav aria-label="Page navigation">@if(!empty($posts)) {{ $posts->links() }} @endif</nav>
         </div>
     </div>
 </section>
