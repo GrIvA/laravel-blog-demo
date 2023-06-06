@@ -39,6 +39,6 @@
   display: block;
   max-width: 60vw;
 }
-style>
+</style>
 @endsection
 

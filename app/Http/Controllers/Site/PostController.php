@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
-use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
