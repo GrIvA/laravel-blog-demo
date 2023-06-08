@@ -60,9 +60,9 @@
         <!-- Categories -->
         <section>
             <header class="major"><h2>{{ trans('test.BLG00023') }}</h2></header>
-            @foreach($category_infos as $slug => $cat)
+            @foreach($category_infos as $cat)
                 <ul class="actions">
-                    <li><a href="{{ route('site.categories', ['lang' => $current_language, 'slug' => $slug]) }}" class="">{{ $cat }}</a></li>
+                    <li><a href="{{ route('site.categories', ['lang' => $current_language, 'slug' => $cat->slug]) }}" class="">{{ $cat->title }} ({{ $cat->posts_count }})</a></li>
                 </ul>
             @endforeach
         </section>

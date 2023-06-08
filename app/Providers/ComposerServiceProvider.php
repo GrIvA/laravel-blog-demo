@@ -39,7 +39,8 @@ class ComposerServiceProvider extends ServiceProvider
         if (Cache::has('all_categories')) {
             $cats = Cache::get('all_categories') ;
         } else {
-            $cats = Category::pluck('title', 'slug')->all();
+//            $cats = Category::pluck('title', 'slug')->all();
+            $cats = Category::withCount('posts')->orderBy('posts_count', 'desc')->get();
             Cache::put('all_categories', $cats, 3 * 60 * 60);
         }
 
