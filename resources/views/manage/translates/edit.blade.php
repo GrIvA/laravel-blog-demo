@@ -7,7 +7,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Edit translatiion for "{{ $translate->key }}"</h1>
+            <h1>Edit translatiion for "{{ $translate->group }}.{{ $translate->key }}"</h1>
           </div>
         </div>
       </div><!-- /.container-fluid -->

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
 use App\Models\Language;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Post;
@@ -34,11 +35,19 @@ class ComposerServiceProvider extends ServiceProvider
             Cache::put('pop_posts', $posts, 3 * 60 * 60);
         }
 
+        // Categories
+        if (Cache::has('all_categories')) {
+            $cats = Cache::get('all_categories') ;
+        } else {
+            $cats = Category::pluck('title', 'slug')->all();
+            Cache::put('all_categories', $cats, 3 * 60 * 60);
+        }
+
         // Tags
         if (Cache::has('all_tags')) {
             $tags = Cache::get('all_tags') ;
         } else {
-            $tags = Tag::pluck('title', 'id')->all();
+            $tags = Tag::pluck('title', 'slug')->all();
             Cache::put('all_tags', $tags, 3 * 60 * 60);
         }
 
@@ -51,14 +60,15 @@ class ComposerServiceProvider extends ServiceProvider
         }
 
 
-        View::composer('site.blog.side', function ($view) use ($posts, $tags, $languages) {
+        View::composer('site.blog.side', function ($view) use ($posts, $tags, $cats, $languages) {
             $view->with('popular_articles', $posts);
             $view->with('tag_infos', $tags);
+            $view->with('category_infos', $cats);
             $view->with('languages', $languages);
             $view->with('current_language', $this->getCurrentLanguage());
         });
 
-        View::composer('site.home', function ($view) {
+        View::composer(['site.category', 'site.tag', 'site.home'], function ($view) {
             $view->with('current_language', $this->getCurrentLanguage());
         });
     }

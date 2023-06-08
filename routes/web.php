@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Manage\CategoryController;
+use App\Http\Controllers\Site\CategoryController as SiteCategoryController;
+use App\Http\Controllers\Site\TagController as SiteTagController;
 use App\Http\Controllers\Manage\TagController;
 use App\Http\Controllers\Manage\PostController;
 use App\Http\Controllers\Manage\LanguageController;
@@ -38,6 +40,8 @@ Route::group(['prefix' => '{lang}', 'middleware' => 'lang'], function () {
         Route::get('/login', [UserController::class, 'loginForm'])->name('login.create');
     });
     Route::get('/article/{slug}', [SitePostController::class, 'show'])->name('posts.article');
+    Route::get('/categories/{slug}', [SiteCategoryController::class, 'index'])->name('site.categories');
+    Route::get('/tags/{slug}', [SiteTagController::class, 'index'])->name('site.tags');
 
 });
 

@@ -1,0 +1,32 @@
+/* Notify */
+
+#modal-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 1rem;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    .alert-block {
+        background-color: _palette(bg);
+        border: solid 1px _palette(border);
+        border-radius: _size(border-radius);
+        box-shadow: rgba(163, 163, 163, 0.28) 5px 5px 6px -3px;
+    }
+
+    .alert {
+        position: relative;
+        padding: 2rem;
+
+        .close {
+            font-size: 1.5em;
+            position: absolute;
+            right: 0.5em;
+            top: 0;
+            cursor: pointer;
+            color: _palette(accent);
+        }
+
+    }
+}

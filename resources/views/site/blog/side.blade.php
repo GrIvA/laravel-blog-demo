@@ -57,15 +57,24 @@
             @endforeach
         </section>
 
-        <!-- Section -->
+        <!-- Categories -->
+        <section>
+            <header class="major"><h2>{{ trans('test.BLG00023') }}</h2></header>
+            @foreach($category_infos as $slug => $cat)
+                <ul class="actions">
+                    <li><a href="{{ route('site.categories', ['lang' => $current_language, 'slug' => $slug]) }}" class="">{{ $cat }}</a></li>
+                </ul>
+            @endforeach
+        </section>
+
+        <!-- Section Tags -->
         <section>
             <header class="major"><h2>{{ trans('test.BLG00004') }}</h2></header>
             <div class="tags">
-            @foreach($tag_infos as $id => $tag)
-                <!--<span class="box {($tag.tag_id in list $tag_selected) ? 'selected' : ''}" data-tag="{$tag.tag_id}">{$tag.name}</span>-->
-                <span class="box {($tag.tag_id in list $tag_selected) ? 'selected' : ''}" data-tag="{{$id}}">{{ $tag }}</span>
+            @foreach($tag_infos as $slug => $tag)
+                <span class="box"><a href="{{ route('site.tags', ['lang' => $current_language, 'slug' => $slug]) }}">{{ $tag }}</a></span>
             @endforeach
-            <span class="box" data-tag="0">All tags</span>
+            <span class="box"><a href="{{ route('home', $current_language) }}">{{ trans('test.BLG00022') }}</a></span>
             </div>
         </section>
 
