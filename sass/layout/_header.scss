@@ -9,7 +9,7 @@
 	#header {
 		@include vendor('display', 'flex');
 		border-bottom: solid 5px _palette(accent);
-		padding: 6em 0 1em 0;
+		padding: 2em 0 1em 0;
 		position: relative;
 
 		> * {
@@ -28,12 +28,8 @@
 			text-align: right;
 		}
 
-		@include breakpoint('<=xlarge') {
-			padding-top: 5em;
-		}
-
 		@include breakpoint('<=small') {
-			padding-top: 6.5em;
+			padding-top: 4em;
 
 			.logo {
 				font-size: 1.25em;
