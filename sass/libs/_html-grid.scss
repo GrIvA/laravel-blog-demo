@@ -84,6 +84,11 @@
 					align-items: flex-end;
 				}
 
+                // elements to right
+                .to-right { 
+                    margin-left: auto;
+                }
+
 		// Step through suffixes.
 			@each $suffix in $suffixes {
 

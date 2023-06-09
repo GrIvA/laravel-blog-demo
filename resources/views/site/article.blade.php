@@ -5,32 +5,31 @@
 
 
 @section('content')
-<article>
-    <header>
+    <h1>{{ $post->header }}</h1>
+    <p><b>{{ trans("test.BLG00026") }} <a href="{{ route('site.categories', ['lang' => $current_language, 'slug' => $post->category->slug]) }}" class="">{{ $post->category->title }}</a></b></p>
+    <div class="info box">
+        <div>{{ $post->description }}</div>
         <br />
-        <h1>{{ $post->header }}</h1>
-        <h4>{{ $post->category->title }}</h4>
-        <div class="info box">
-            <div>{{ $post->description }}</div>
-            <div>{'BLG00005'|translate}: {{ $post->getPostDate() }}</div>
-            <br />
 
-            <div class="tags" style="margin-bottom:1rem;">
-                @foreach($post->tags as $tag)
-                    <span>{{ $tag->title }}</span>
-                @endforeach
-            </div>
+        <div class="tags" style="margin-bottom:1rem;">
+            @foreach($post->tags as $tag)
+                <span class="box"><a href="{{ route('site.tags', ['lang' => $current_language, 'slug' => $tag->slug]) }}">{{ $tag->title }}</a></span>
+            @endforeach
         </div>
-    </header>
+        <div class="row">
+            <b class="col-3">{{ trans("test.BLG00027") }}: {{ $post->getPostDate() }}</b>
+            <small class="to-right"><i class="fa fa-eye"> {{ $post->views }}</i></small>
+        </div>
+    </div>
+
     <div class="article-body">
         @if($post->thumbnails)
             <span class="image right">
                 <img src="{{ $post->getImage() }}" alt="article image" />
             </span>
         @endif
-        {!! $post->content !!}
+        {!! $post->getHtmlContent() !!}
     </div>
-</article>
 @endsection
 
 @section('css')

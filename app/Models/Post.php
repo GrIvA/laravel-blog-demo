@@ -60,6 +60,14 @@ class Post extends Model
                 ->format('d F, Y');
     }
 
+    public function getHtmlContent()
+    {
+        $parser = new Parsedown();
+        $parser->setSafeMode(true);
+        return $parser->setMarkupEscaped(false)->text($this->content);
+
+    }
+
     // PROTECT
 
     /**
@@ -68,6 +76,7 @@ class Post extends Model
      *
      * @return Attribute
      */
+    /*
     protected function content(): Attribute
     {
         return Attribute::make(
@@ -78,5 +87,6 @@ class Post extends Model
             },
         );
     }
+    */
 
 }

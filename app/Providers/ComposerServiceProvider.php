@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\View;
 
 class ComposerServiceProvider extends ServiceProvider
 {
+    private $list = [
+        'site.blog.side',
+        'site.category',
+        'site.tag',
+        'site.home',
+        'site.article',
+    ];
 
     /**
      * Register services.
@@ -66,10 +73,9 @@ class ComposerServiceProvider extends ServiceProvider
             $view->with('tag_infos', $tags);
             $view->with('category_infos', $cats);
             $view->with('languages', $languages);
-            $view->with('current_language', $this->getCurrentLanguage());
         });
 
-        View::composer(['site.category', 'site.tag', 'site.home'], function ($view) {
+        View::composer($this->list, function ($view) {
             $view->with('current_language', $this->getCurrentLanguage());
         });
     }

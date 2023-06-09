@@ -13,17 +13,19 @@
                 <h1>{{ $banner->header }}</h1>
                 <p>{{ $banner->epilog }}</p>
             </header>
-            <p>{{ $banner->annons }}</p>
+            <p>{{ $banner->description }}</p>
             <ul class="actions">
                 <li><a href="{{ route('posts.article', ['lang' => $current_language, 'slug' => $banner->slug]) }}" class="button big">Learn More</a></li>
             </ul>
             <div class="tags">
                 @foreach($banner->tags as $tag)
-                    <span data-tag="{{ $tag->id }}">{{ $tag->title }}</span>
+                    <span class="box"><a href="{{ route('site.tags', ['lang' => $current_language, 'slug' => $tag->slug]) }}">{{ $tag->title }}</a></span>
                 @endforeach
             </div>
-            <small>{{ $banner->getPostDate() }}</small>
-            <small><i class="fa fa-eye">{{ $banner->views }}</i></small>
+            <div class="row">
+                <small class="col-3">{{ trans("test.BLG00027") }}: {{ $banner->getPostDate() }}</small>
+                <small class="col-1 to-right"><i class="fa fa-eye"> {{ $banner->views }}</i></small>
+            </div>
         </div>
         @if($banner->thumbnails)
             <span class="image object">
@@ -50,8 +52,7 @@
                     <p>{{ $post->epilog }} <a href="{{ route('posts.article', ['lang' => $current_language, 'slug' => $post->slug]) }}">More...</a></p>
                     <div class="tags">
                         @foreach($post->tags as $tag)
-                            <span data-tag="{{ $tag->id }}">{{ $tag->title }}</span>
-                            <!--<span class="{($tag in list $tag_selected) ? 'selected' : ''}" data-tag="{$tags[$tag]['tag_id']}">{$tags[$tag]['name']}</span>-->
+                            <span class="box"><a href="{{ route('site.tags', ['lang' => $current_language, 'slug' => $tag->slug]) }}">{{ $tag->title }}</a></span>
                         @endforeach
                     </div>
                 </div>

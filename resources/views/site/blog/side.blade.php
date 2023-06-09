@@ -25,7 +25,7 @@
             <ul>
 
                 @auth
-                    <h3>{{ trans('test.BLG00003') }} {{ Auth::user()->name }}</h3>
+                    <b>{{ trans('test.BLG00003') }} {{ Auth::user()->name }}</b>
                     <li><a href="{{ route('logout') }}">{{ trans('test.BLG00007') }}</a></li>
                     <li><a href="#">{{ trans('test.BLG00009') }}</a></li>
                 @endauth
