@@ -28,7 +28,7 @@
                 <img src="{{ $post->getImage() }}" alt="article image" />
             </span>
         @endif
-        {!! $post->getHtmlContent() !!}
+        {!! $post->html !!}
     </div>
 @endsection
 
